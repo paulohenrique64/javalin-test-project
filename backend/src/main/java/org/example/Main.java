@@ -21,15 +21,15 @@ public class Main {
 
         // gerenciar upload de arquivos
         app.post("/upload", ctx -> {
-            int fileCount = ctx.uploadedFiles("files").size();
+            int fileCount = ctx.uploadedFiles().size();
 
             System.out.printf("%d file uploaded%n", fileCount);
 
             for (int i = 0; i < fileCount; i++) {
-                System.out.println("\"" + ctx.uploadedFiles("files").get(i).filename() + "\" uploaded");
+                System.out.println("\"" + ctx.uploadedFiles().get(i).filename() + "\" uploaded");
             }
 
-            ctx.uploadedFiles("files").forEach(uploadedFile ->
+            ctx.uploadedFiles().forEach(uploadedFile ->
                 FileUtil.streamToFile(uploadedFile.content(), "arquivos-recebidos-do-frontend/" + uploadedFile.filename()));
         });
     }

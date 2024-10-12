@@ -6,7 +6,7 @@ form.addEventListener("submit", (event) => {
     const formData  = new FormData();
 
     for (let i = 0; i < input.files.length; i++) {
-        formData.append("files", input.files[i]);
+        formData.append(input.files[i].name, input.files[i]);
     }
       
     fetch("http://localhost:7070/upload", {
